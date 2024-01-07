@@ -33,14 +33,15 @@ namespace Form.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(Register register)
         {
-          
-            if(ModelState.IsValid) { 
+
+            if (ModelState.IsValid)
+            {
                 var student = new Student()
                 {
                     Name = register.Name,
                     Phone = register.Phone,
                     Email = register.Email,
-                    Age= register.Age
+                    Age = register.Age
                 };
 
                 await applicationDbContext.Students.AddAsync(student);
@@ -50,7 +51,37 @@ namespace Form.Controllers
             return View(register);
 
         }
-        
-        
+
+        //Contact view and controller
+
+        [HttpGet]
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Contact(Contact contact)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var student = new Student()
+                {
+                   
+                    Name = contact.Name,
+                    Email = contact.Email,
+                    Description = contact.Description,
+
+                };
+
+                await applicationDbContext.Students.AddAsync(student);
+                await applicationDbContext.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(contact);
+
+
+        }
     }
 }

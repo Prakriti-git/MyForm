@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "t7xwAEctFXGw4532RCQcstRILBMh6+nXJL4b33h+p6RwFXh51qEECGtcY7Q9uD0Gcn6VIWjU+gCkHXO10gyoMQ==",
+  "dgSpecHash": "F3UJD4Un66V9xtaNQtlyXm4GBsUvuqQx0hsivFEfcGSnoOrLL77FTlkmguONwtE3g77tfBQm17MuSP8KoS11Iw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\DELL\\source\\repos\\Form\\Form\\Form.csproj",
+  "projectFilePath": "C:\\Users\\DELL\\Desktop\\myclone\\form\\Form\\Form.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\7.0.5\\microsoft.aspnetcore.diagnostics.entityframeworkcore.7.0.5.nupkg.sha512",

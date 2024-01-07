@@ -1,0 +1,37 @@
+﻿@model Form.Models.Contact
+@{
+    ViewData["Title"] = "Contact";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>You can use this page for getting your contact details.</p>
+
+<form method="post" action="Contact">
+
+    <div class="mb-3">
+        <label for="InputName" class="form-label">Name</label>
+        <input type="text" class="form-control" asp-for="Name">
+        <div id="name" class="form-text">
+
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="InputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" asp-for="Email">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="Description" class="form-label">Enter your description.</label>
+        <input type="text" class="form-control" asp-for="Description">
+        <div id="description" class="form-text">Share your description with us and let us know about your details.</div>
+    </div>
+    
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
