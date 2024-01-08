@@ -52,6 +52,36 @@ namespace Form.Controllers
 
         }
 
+
+        //Creating the login page for myform
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(Login login)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var student = new Student()
+                {
+                   Email = login.Email,
+                   Password = login.Password,
+                };
+
+                await applicationDbContext.Students.AddAsync(student);
+                await applicationDbContext.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(login);
+
+        }
+
+
         //Contact view and controller
 
         [HttpGet]
@@ -66,7 +96,7 @@ namespace Form.Controllers
 
             if (ModelState.IsValid)
             {
-                var student = new Student()
+                var newContact = new Contact()
                 {
                    
                     Name = contact.Name,
@@ -75,7 +105,7 @@ namespace Form.Controllers
 
                 };
 
-                await applicationDbContext.Students.AddAsync(student);
+                //await applicationDbContext.Contact.AddAsync(newContact);
                 await applicationDbContext.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

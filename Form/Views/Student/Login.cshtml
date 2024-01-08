@@ -1,0 +1,26 @@
+﻿@model Form.Models.Login
+@{
+    ViewData["Title"] = "Login";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p> </p>
+
+<form method="post" action="Login">
+
+    <div class="mb-3">
+        <label for="Email" class="form-label">Email</label>
+        <input type="email" class="form-control" asp-for="Email" placeholder="Enter your email">
+        <span asp-validation-for="Email" class="text-danger">  </span>
+
+    </div>
+
+    <div class="mb-3">
+        <label for="InputPassword" class="form-label">Password</label>
+        <input type="password" class="form-control" asp-for="Password" placeholder="Enter your password">
+        <div id="password" class="text-danger"> </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>

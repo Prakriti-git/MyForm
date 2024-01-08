@@ -12,6 +12,12 @@
     </div>
 
     <div class="mb-3">
+        <label for="InputPassword" class="form-label">Password</label>
+        <input type="password" class="form-control" asp-for="Password" >
+        <div id="password" class="text-danger"> </div>
+    </div>
+
+    <div class="mb-3">
         <label for="Email" class="form-label">Email</label>
         <input type="email" class="form-control" asp-for="Email">
         <span asp-validation-for="Email" class="text-danger">  </span>

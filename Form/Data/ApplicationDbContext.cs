@@ -10,6 +10,9 @@ namespace Form.Data
             public ApplicationDbContext(DbContextOptions options) : base(options) { }
 
             public DbSet<Student> Students { get; set; }
-        }
+
+            public DbSet<Contacts> Contact { get; set; }
+
+    }
 }
 ﻿
