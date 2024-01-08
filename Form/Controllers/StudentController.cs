@@ -41,7 +41,8 @@ namespace Form.Controllers
                     Name = register.Name,
                     Phone = register.Phone,
                     Email = register.Email,
-                    Age = register.Age
+                    Age = register.Age,
+                    Password = register.Password,
                 };
 
                 await applicationDbContext.Students.AddAsync(student);
