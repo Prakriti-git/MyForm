@@ -16,8 +16,6 @@ namespace Form.Models
         public string Password { get; set; }
 
 
-
-
         [UniqueEmail(ErrorMessage ="The email already exists. So use another email.  ")]
         public string Email { get; set; }
 
@@ -33,6 +31,8 @@ namespace Form.Models
         [Required(ErrorMessage = "Age is required.")]
         [Range(18, int.MaxValue, ErrorMessage = "Age must be 18 years or older.")]
         public int Age { get; set; }
+
+        
     }
 
     //this validation is for email.
@@ -94,6 +94,8 @@ namespace Form.Models
             return ValidationResult.Success;
         }
     }
+
+
 
 
     // Validation of your name 

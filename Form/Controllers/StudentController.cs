@@ -43,6 +43,7 @@ namespace Form.Controllers
                     Email = register.Email,
                     Age = register.Age,
                     Password = register.Password,
+                   
                 };
 
                 await applicationDbContext.Students.AddAsync(student);
