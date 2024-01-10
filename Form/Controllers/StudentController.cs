@@ -4,10 +4,14 @@ using Form.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.Eventing.Reader;
+using Microsoft.AspNetCore.Http;
 
 namespace Form.Controllers
 {
+    //Creating a constructor of the controller.
     public class StudentController : Controller
+
+    //Assigning a private field.
     {
         private readonly ApplicationDbContext applicationDbContext;
 
@@ -16,13 +20,21 @@ namespace Form.Controllers
             this.applicationDbContext = applicationDbContext;
         }
 
-
-        public IActionResult Index()
+        //Index page.
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
+
+            var students = await applicationDbContext.Students.ToListAsync();
+
+            if (HttpContext.Session.GetString("StudentsSession") != null)
+            {
+                return RedirectToAction("Dashboard");
+            }
             return View();
         }
 
-        //Creating the view page for myform
+        //The code for register area is written below.
 
         [HttpGet]
         public IActionResult Register()
@@ -31,9 +43,15 @@ namespace Form.Controllers
         }
 
         [HttpPost]
+
+        //We are using HttpPost request for saving he input data into the database.
         public async Task<IActionResult> Register(Register register)
         {
 
+
+
+        //ModelState.IsValid means that if there is no error validation in the form, execute the code in the if statement.
+           
             if (ModelState.IsValid)
             {
                 var student = new Student()
@@ -48,7 +66,7 @@ namespace Form.Controllers
 
                 await applicationDbContext.Students.AddAsync(student);
                 await applicationDbContext.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Login");
             }
             return View(register);
 
@@ -67,19 +85,23 @@ namespace Form.Controllers
         public async Task<IActionResult> Login(Login login)
         {
 
-            if (ModelState.IsValid)
-            {
-                var student = new Student()
-                {
-                   Email = login.Email,
-                   Password = login.Password,
-                };
+            var myStudent = applicationDbContext.Students.Where(x => x.Email == login.StudentEmail && x.Password == login.StudentPassword).FirstOrDefault();
 
-                await applicationDbContext.Students.AddAsync(student);
-                await applicationDbContext.SaveChangesAsync();
-                return RedirectToAction("Index");
+            if (myStudent != null)
+            {
+                HttpContext.Session.SetString("StudentSession", myStudent.Email);
+                return RedirectToAction("Dashboard");
             }
-            return View(login);
+             
+            // student null 
+
+            else
+            {
+                ViewBag.Message = "Login failed, Please use correct email and password.";
+            }
+
+           
+            return View();
 
         }
 
@@ -92,7 +114,7 @@ namespace Form.Controllers
             return View();
         }
 
-        [HttpPost]
+        
         public async Task<IActionResult> Contact(Contact contact)
         {
 
@@ -115,5 +137,13 @@ namespace Form.Controllers
 
 
         }
+        [HttpGet]
+        public async Task< IActionResult> Dashboard()
+        {
+            var students = await applicationDbContext.Students.ToListAsync();
+            return View(students);
+        }
+
+
     }
 }

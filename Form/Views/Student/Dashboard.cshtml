@@ -1,0 +1,28 @@
+﻿@model List<Form.Models.Domain.Student>
+
+<h1>This is a dashboard</h1>
+<table class="table">
+    <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Password</th>
+          <th>Email</th>
+          <th>Age</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(var student in Model)
+        {
+            <tr>
+                <td>@student.Id</td>
+                <td>@student.Name</td>
+                <td>@student.Password</td>
+                <td>@student.Email</td>
+                <td>@student.Age</td>
+            </tr>
+        }
+    </tbody>
+</table>
