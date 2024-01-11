@@ -106,6 +106,11 @@ namespace Form.Controllers
         }
 
 
+
+
+
+
+
         //Contact view and controller
 
         [HttpGet]
@@ -137,8 +142,10 @@ namespace Form.Controllers
 
 
         }
+
+
         [HttpGet]
-        public async Task< IActionResult> Dashboard()
+        public async Task<IActionResult> Dashboard()
         {
             var students = await applicationDbContext.Students.ToListAsync();
             return View(students);
