@@ -143,14 +143,47 @@ namespace Form.Controllers
 
         }
 
-
-        [HttpGet]
-        public async Task<IActionResult> Dashboard()
+        //Dashboard View.
+        public IActionResult Dashboard()
         {
-            var students = await applicationDbContext.Students.ToListAsync();
-            return View(students);
+            //Accessing my session.
+            //Creating a session.
+            //If the session is not null.
+
+            if (HttpContext.Session.GetString("StudentSession") != null)
+            {
+                //Creating a viewBag message.
+
+                ViewBag.MySession = HttpContext.Session.GetString("StudentSession").ToString();
+            }
+
+            //If the session is null.
+            else
+            {
+                //Redirect to Login in case the user directly wants to get to the dashboard without login.
+                return RedirectToAction("Login");
+            }
+            ModelState.Clear();
+            return View();
         }
+        //Login section ends.
 
 
+        //The logout section starts.
+
+        public IActionResult Logout()
+        {
+
+
+            if (HttpContext.Session.GetString("StudentSession") != null)
+            {
+                //Removing the session to Logout.
+                HttpContext.Session.Remove("StudentSession");
+
+                //Redirecting to the Login view after removing the session indicating Logout.
+                return RedirectToAction("Login");
+            }
+            return View();
+        }
     }
 }
