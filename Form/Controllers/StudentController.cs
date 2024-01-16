@@ -164,9 +164,11 @@ namespace Form.Controllers
                 return RedirectToAction("Login");
             }
             ModelState.Clear();
-            return View();
+            var students = applicationDbContext.Students.ToList();
+            return View(students);
         }
         //Login section ends.
+
 
 
         //The logout section starts.
@@ -185,5 +187,18 @@ namespace Form.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public IActionResult View(int id)
+        {
+
+            var student = applicationDbContext.Students.FirstOrDefaultAsync(x => x.Id == id);
+
+            return View(student);
+        }
+
+        
     }
+
+
 }
